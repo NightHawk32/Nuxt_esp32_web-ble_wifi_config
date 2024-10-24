@@ -58,7 +58,7 @@
                 v-model="gxIp"
                 :disabled="!btStat"
                 type="text"
-                placeholder="GX device IP address 192.168.178.100"
+                placeholder="GX device IP"
               ></b-form-input>
               <b-input-group-append>
                 <b-button variant="outline-secondary" :disabled="true">
@@ -120,7 +120,7 @@
         </b-col>
       </b-form-row>
 
-      <b-row>
+      <b-row class="mt-3">
         <b-col>
           <b-button
             id="setSSIDs"
@@ -173,7 +173,6 @@ export default {
       wifiList: [],
       dropdownMessage: '-- SSID from ESP32 --',
       secEnabled: false,
-      gxIp: '192.168.0.100',
       gxPort: '502',
       interval: 60
     }
@@ -227,6 +226,15 @@ export default {
             required
           },
           pwPrim: {
+            required
+          },
+          gxIp: {
+            required
+          },
+          gxPort: {
+            required
+          },
+          interval: {
             required
           }
         }

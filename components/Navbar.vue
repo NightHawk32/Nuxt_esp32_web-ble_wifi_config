@@ -76,6 +76,9 @@ export default {
       this.$espconfig.setConnectionStatusUuid(
         '5b3595c4-ad4f-4e1e-954e-3b290cc02eb0'
       ) // Notification, wifi connection status UUID
+      this.$espconfig.setGxIpUuid('87b4c8c9-11c7-4835-93e2-c13e27dfab9c') // Port number characteristic
+      this.$espconfig.setGxPortUuid('4c4b7d11-952f-4743-95bd-02c6cd25f427') // Port number characteristic
+      this.$espconfig.setGxPortUuid('bbd4efc0-6f0d-4dcd-ab07-6eaf86277e9f') // Port number characteristic
 
       /** The following two functions handle connect and disconnect events */
       this.$espconfig.setOnConnected(() => {

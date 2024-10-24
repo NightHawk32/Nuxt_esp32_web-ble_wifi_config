@@ -6,6 +6,9 @@ class Espconfig {
     credentialsUuid = '00005555-ead2-11e7-80c1-9a214cf093ae',
     ssidListUuid = null,
     connectionStatusUuid = null,
+    gxIpUuid = null,
+    gxPortUuid = null,
+    updateIntervalUuid = null,
     onConnected = null,
     onDisconnected = null,
     listener = null
@@ -26,6 +29,9 @@ class Espconfig {
     this.setCredentialsUuid(credentialsUuid)
     this.setSsidListUuid(ssidListUuid)
     this.setConnectionStatusUuid(connectionStatusUuid)
+    this.setGxIpUuid(connectionStatusUuid)
+    this.setGxPortUuid(connectionStatusUuid)
+    this.setUpdateIntervalUuid(connectionStatusUuid)
     this.setOnConnected(onConnected)
     this.setOnDisconnected(onDisconnected)
     // this.setNotificationListener(listener);
@@ -87,6 +93,42 @@ class Espconfig {
     }
 
     this.connectionStatusUuid = uuid
+  }
+
+  setGxIpUuid(uuid){
+    if (
+      uuid &&
+      !Number.isInteger(uuid) &&
+      !(typeof uuid === 'string' || uuid instanceof String)
+    ) {
+      throw new Error('UUID type is neither a number nor a string')
+    }
+
+    this.gxIpUuid = uuid
+  }
+
+  setGxPortUuid(uuid){
+    if (
+      uuid &&
+      !Number.isInteger(uuid) &&
+      !(typeof uuid === 'string' || uuid instanceof String)
+    ) {
+      throw new Error('UUID type is neither a number nor a string')
+    }
+
+    this.gxPortUuid = uuid
+  }
+
+  setUpdateIntervalUuid(uuid){
+    if (
+      uuid &&
+      !Number.isInteger(uuid) &&
+      !(typeof uuid === 'string' || uuid instanceof String)
+    ) {
+      throw new Error('UUID type is neither a number nor a string')
+    }
+
+    this.updateIntervalUuid = uuid
   }
 
   setOnConnected(listener) {
