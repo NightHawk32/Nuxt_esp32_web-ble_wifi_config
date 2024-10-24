@@ -26,7 +26,7 @@
     <b-form
       id="my-form"
       method="POST"
-      class="row needs-validation"
+      class="row needs-validation col-11"
       novalidate
       @submit.prevent="onSubmit"
       @reset.prevent="onReset"
@@ -44,55 +44,113 @@
       />
 
       <b-form-row>
-        <b-form-checkbox
-          id="checkbox-1"
-          v-model="secEnabled"
-          :disabled="!btStat"
-          name="checkbox-1"
-          class="ml-2"
-          switch
-        >
-          Configure Secondary SSID
-        </b-form-checkbox>
+        <b-col cols="11">
+          <b-form-group
+            id="gx-group"
+            class="mt-2"
+            label="GX Device"
+            label-align="left"
+            label-for="gxIp"
+          >
+            <b-input-group ref="gxIp">
+              <b-form-input
+                id="gxIp"
+                v-model="gxIp"
+                :disabled="!btStat"
+                type="text"
+                placeholder="GX device IP address 192.168.178.100"
+              ></b-form-input>
+              <b-input-group-append>
+                <b-button variant="outline-secondary" :disabled="true">
+                  :
+                </b-button>
+              </b-input-group-append>
+              <b-input-group-append class="w-25">
+                <b-form-input
+                  id="gxPort-1"
+                  v-model="gxPort"
+                  :disabled="!btStat"
+                  placeholder="Port e.g. 502"
+                ></b-form-input>
+              </b-input-group-append>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
       </b-form-row>
-      <InputPair
-        ref="Sec"
-        role="Sec"
-        :wifilist="wifiList"
-        :dropdown-message="dropdownMessage"
-        :enabled="secEnabled && btStat"
-        :validate="{
-          ssid: validateState('ssidSec'),
-          pw: validateState('pwSec')
-        }"
-      />
 
-      <b-col cols="11">
-        <b-button
-          id="setSSIDs"
-          type="submit"
-          variant="primary"
-          :disabled="!btStat"
-        >
-          Configure device
-        </b-button>
-        <b-button
-          id="eraseSSIDs"
-          variant="secondary"
-          :disabled="!btStat"
-          @click="eraseSSIDs"
-        >
-          Erase
-        </b-button>
-        <b-button
-          id="resetSSIDs"
-          type="reset"
-          variant="secondary"
-          :disabled="!btStat"
-        >
-          Reset
-        </b-button>
-      </b-col>
+      <b-form-row>
+        <b-col cols="11">
+          <b-form-group
+            id="interval-group"
+            class="mt-2"
+            label="Update Interval"
+            label-align="left"
+            label-for="interval"
+          >
+            <b-input-group ref="interval">
+              <b-form-input
+                id="interval"
+                v-model="interval"
+                :disabled="!btStat"
+                type="number"
+                placeholder="GX device IP address 192.168.178.100"
+              ></b-form-input>
+              <b-input-group-append>
+                <b-button variant="outline-secondary" :disabled="true">
+                  s
+                </b-button>
+              </b-input-group-append>
+            </b-input-group>
+          </b-form-group>
+        </b-col>
+      </b-form-row>
+
+      <b-form-row>
+        <b-col>
+          <b-form-checkbox
+            id="checkbox-1"
+            v-model="secEnabled"
+            :disabled="!btStat"
+            name="checkbox-1"
+            class="mt-2"
+            switch
+          >
+            Configure Secondary SSID
+          </b-form-checkbox>
+        </b-col>
+      </b-form-row>
+
+      <b-row>
+        <b-col>
+          <b-button
+            id="setSSIDs"
+            type="submit"
+            class="mt-2"
+            variant="primary"
+            :disabled="!btStat"
+          >
+            Configure device
+          </b-button>
+          <b-button
+            id="eraseSSIDs"
+            variant="secondary"
+            class="mt-2"
+            :disabled="!btStat"
+            @click="eraseSSIDs"
+          >
+            Erase
+          </b-button>
+          <b-button
+            id="resetSSIDs"
+            type="reset"
+            class="mt-2"
+            variant="secondary"
+            :disabled="!btStat"
+          >
+            Reset
+          </b-button>
+        </b-col>
+      </b-row>
     </b-form>
   </div>
 </template>
@@ -114,7 +172,10 @@ export default {
       connectionStatus: 'Device is not connected',
       wifiList: [],
       dropdownMessage: '-- SSID from ESP32 --',
-      secEnabled: false
+      secEnabled: false,
+      gxIp: '192.168.0.100',
+      gxPort: '502',
+      interval: 60
     }
   },
   computed: {
@@ -167,12 +228,6 @@ export default {
           },
           pwPrim: {
             required
-          },
-          ssidSec: {
-            required
-          },
-          pwSec: {
-            required
           }
         }
       }
@@ -180,9 +235,7 @@ export default {
       return {
         form: {
           ssidPrim: {},
-          pwPrim: {},
-          ssidSec: {},
-          pwSec: {}
+          pwPrim: {}
         }
       }
     }

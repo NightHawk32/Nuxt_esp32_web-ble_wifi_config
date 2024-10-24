@@ -12,7 +12,7 @@ export default {
   },
   head() {
     return {
-      title: 'Configuration Form: ESP32 WiFi config tool built w/ Nuxt.js'
+      title: 'ESP32 Energy Config tool built w/ Nuxt.js'
     }
   }
 }

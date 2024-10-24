@@ -8,7 +8,7 @@
       <div class="ml-3">
         <b-row>
           <h1 class="mb-3">
-            ESP32 WiFi config
+            Energy Display Config
           </h1>
         </b-row>
 
@@ -57,9 +57,16 @@ html {
 .container {
   margin: 10px;
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.row {
+  display: block;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
 }
 </style>
